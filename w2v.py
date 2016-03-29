@@ -96,6 +96,35 @@ def net_default(a,size,voc_size):
         for b in range(size):
             a[i][b]=0
     return a
+def createindextable(words):#创建词索引表，调用该函数传入词对象列表返回table列表
+    table = []
+    i = 0
+    a = 0
+    for a in range(len(words)):
+        table.append('')
+    for i in range(len(words)):
+        wordhash = hash(words[i])
+        ind = wordhash % len(words)
+        if table[ind] == '':
+            temp=['','']
+            temp[0] = words[i]
+            temp[1] = i
+            table[ind] = temp
+            continue
+        while 1:
+            ind = ind + 1
+            if ind == len(words):
+                ind = 0
+            if table[ind] != '':
+                continue
+            else:
+                temp=['','']
+                temp[0] = words[i]
+                temp[1] = i
+                table[ind] = temp
+
+                break
+    return table
 fin=open('G:\\新建文件夹\\程序\\word2vec_wanwei版\\degreesum\\zongbiao.txt','r')
 strfile=fin.read()
 strline=strfile.split('\n')
