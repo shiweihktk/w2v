@@ -87,14 +87,15 @@ def creatindex(cishu1,cishu2,words):
         cishu2-=1
     if i%100==0:
         print(i)
-def vec_default(a,size):
-    for i in range(size):
-        a[i]=(random.random()-0.5)/size
-    return a
+def vec_default(wordvec1,size,voc_size):
+    for i in range(voc_size):
+        for a in range(size):
+            wordvec1[a+i*size]=(random.random()-0.5)/size
+    return wordvec1
 def net_default(a,size,voc_size):
     for i in range(voc_size):
         for b in range(size):
-            a[i][b]=0
+            a[b+i*size]=0
     return a
 def createindextable(words):#创建词索引表，调用该函数传入词对象列表返回table列表
     table = []
